@@ -1,0 +1,48 @@
+/* Оверлей для диалогового окна */
+.ui-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Само диалоговое окно */
+.ui-dialog {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.ui-dialog p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.ui-dialog button {
+  margin: 0 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.ui-dialog button:first-child {
+  background-color: #3498db;
+  color: white;
+}
+
+.ui-dialog button:last-child {
+  background-color: #e74c3c;
+  color: white;
+}

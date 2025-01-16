@@ -1,72 +1,18 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-#root {
-  display: flex;
-  justify-content: center;
-}
-
 body {
-  background-color: #f4f4f4;
   margin: 0;
-  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
-.employee-table {
-  max-width: 1600px;
-  margin: auto;
-  border-collapse: collapse;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.app {
+  display: flex;
 }
 
-table {
-  width: 100%;
-  border: 1px solid #ddd;
+.burger-menu {
+  display: none;
 }
 
-th,
-td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-tr:hover {
-  background-color: #f1f1f1;
-}
-
-.input-field {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button {
-  margin-top: 10px;
-  padding: 10px 15px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #218838;
+@media (max-width: 720px) {
+  .burger-menu {
+    display: block;
+  }
 }

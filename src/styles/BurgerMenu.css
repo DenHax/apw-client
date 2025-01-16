@@ -1,0 +1,19 @@
+/* Кнопка бургер-меню */
+.burger-menu {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  color: #2c3e50;
+}
+
+@media (max-width: 720px) {
+  .burger-menu {
+    display: block;
+  }
+}
