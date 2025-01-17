@@ -1,24 +1,14 @@
-import React, { useState } from "react";
-import SideMenu from "./components/UI/SideMenu";
-import AppRoutes from "./routes";
-import "./styles/App.css";
+import React from "react";
+import { Layout } from "antd";
+import UploadEntity from "./components/Entities/Upload/UploadEntity";
 
 const App = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   return (
     <>
-      <div className="app">
-        <SideMenu isOpen={isMenuOpen} onClose={toggleMenu}></SideMenu>
-        <button className="burger-menu" onClick={toggleMenu}>
-          ☰
-        </button>
-        <AppRoutes />
-      </div>
+      <h1>APW client</h1>
+      <Layout style={{ minHeight: "100vh" }}>
+        <UploadEntity />
+      </Layout>
     </>
   );
 };
