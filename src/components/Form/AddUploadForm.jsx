@@ -23,7 +23,6 @@ function AddUploadForm({ form, subsystems, employees, fuelRoads }) {
 
   useEffect(() => {
     if (selectedEmployee) {
-      // Автоматически выбираем реактор сотрудника
       const employeeSubsystem = subsystems.find(
         (subsystem) => subsystem.subsystem_id === selectedEmployee.subsystem_id,
       );
@@ -32,23 +31,21 @@ function AddUploadForm({ form, subsystems, employees, fuelRoads }) {
         form.setFieldsValue({ subsystem_id: employeeSubsystem.subsystem_id });
       }
 
-      // Фильтруем сотрудников по выбранному реактору
       const filteredEmployees = employees.filter(
         (employee) => employee.subsystem_id === employeeSubsystem.subsystem_id,
       );
       setFilteredEmployees(filteredEmployees);
     }
-  }, [selectedEmployee, form, subsystems, employees]); // Зависимости от selectedEmployee, form, subsystems, employees
+  }, [selectedEmployee, form, subsystems, employees]);
 
   useEffect(() => {
     if (selectedSubsystem) {
-      // Фильтруем сотрудников по выбранному реактору
       const filteredEmployees = employees.filter(
         (employee) => employee.subsystem_id === selectedSubsystem.subsystem_id,
       );
       setFilteredEmployees(filteredEmployees);
     }
-  }, [selectedSubsystem, employees]); // Зависимости от selectedSubsystem и employees
+  }, [selectedSubsystem, employees]);
 
   const handleEmployeeChange = (value) => {
     const employee = employees.find((emp) => emp.employee_id === value);
@@ -71,7 +68,8 @@ function AddUploadForm({ form, subsystems, employees, fuelRoads }) {
         rules={[{ required: true }]}
         options={subsystems.map((subsystem) => ({
           value: subsystem.subsystem_id,
-          label: `Реактор#${subsystem.subsystem_id}, статус: ${subsystem.status}`,
+
+          label: `Реактор#${subsystems.findIndex((em) => em.subsystem_id === subsystem.subsystem_id) + 1}, статус: ${subsystem.status}`,
         }))}
         onChange={handleSubsystemChange}
       />
