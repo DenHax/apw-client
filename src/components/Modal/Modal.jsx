@@ -18,15 +18,6 @@ const AddUploadModal = ({
 
   setInterval(() => setCurDate(new Date(), 1000));
 
-  const handleOk = () => {
-    form.validateFields().then((values) => {
-      values.load_date = moment().format("YYYY-MM-DDTHH:mm:ssZ");
-      values.fuel_road_number = Number(values.fuel_road_number);
-      onOk(values);
-      form.resetFields();
-    });
-  };
-
   return (
     <Modal
       title="Добавить установку"
