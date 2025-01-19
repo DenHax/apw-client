@@ -1,6 +1,6 @@
 import { Modal } from "antd";
-import moment from "moment";
 import AddUploadForm from "../../Form/AddUploadForm";
+//import moment from "moment";
 
 function AddUploadModal({
   visible,
@@ -13,9 +13,12 @@ function AddUploadModal({
 }) {
   const handleOk = () => {
     form.validateFields().then((values) => {
-      values.load_date = moment().format("YYYY-MM-DDTHH:mm:ssZ");
+      values.load_date = new Date().toISOString();
+      //moment()
+      //.format("YYYY-MM-DDTHH:mm:ss.SSS")
+      //.replace(".", "Z")
+      //.split("Z")[0];
       values.fuel_road_number = Number(values.fuel_road_number);
-      console.log(values);
       onOk(values);
       form.resetFields();
     });

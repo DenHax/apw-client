@@ -7,13 +7,16 @@ import { Button } from "antd";
 import { Form } from "antd";
 import { Popconfirm } from "antd";
 
+import ReportButton from "./ReportButton";
+import ReportTable from "./ReportTable";
+
 const UploadEntity = () => {
   const [uploads, setUploads] = useState([]);
   const [subsystems, setSubsystems] = useState([]);
   const [fuelRoads, setFuelRoads] = useState([]);
   const [employees, setEmployees] = useState([]);
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
-
+  const [reportData, setReportData] = useState([]);
   useEffect(() => {
     fetchUpload();
     fetchSubsystem();
@@ -21,7 +24,6 @@ const UploadEntity = () => {
     fetchEmployee();
   }, []);
 
-  console.log(fuelRoads);
   const fetchUpload = async () => {
     const responseUrl = `/api/upload/`;
     const response = await axios.get(responseUrl);
@@ -50,9 +52,20 @@ const UploadEntity = () => {
     }),
       fetchUpload();
   };
+  const handleDelete = async (upload_id) => {
+    await axios.delete(`/api/upload/${upload_id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }),
+      fetchUpload();
+  };
 
   const formatDate = (inputDate) => {
-    const formattedDate = inputDate.replace("T", " ").split(".")[0];
+    const formattedDate = inputDate
+      .replace("T", " ")
+      .replace("Z", "")
+      .split(".")[0];
     return formattedDate;
   };
 
@@ -93,15 +106,17 @@ const UploadEntity = () => {
       sorter: (a, b) => a.fuel_road_number - b.fuel_road_number,
     },
     {
-      title: "operation",
+      title: "Действия",
       dataIndex: "operation",
       render: (_, record) =>
         uploads.length >= 1 ? (
           <Popconfirm
-            title="Sure to delete?"
-            onConfirm={() => handleDelete(record.key)}
+            title={
+              "Точно хотите удалить запись за " + record.load_date.split("T")[0]
+            }
+            onConfirm={() => handleDelete(record.load_date)}
           >
-            <a>Delete</a>
+            <a>Удалить</a>
           </Popconfirm>
         ) : null,
     },
@@ -118,6 +133,8 @@ const UploadEntity = () => {
       >
         Добавить
       </Button>
+      <ReportButton onReportGenerated={setReportData} />
+      {reportData.length > 0 && <ReportTable reportData={reportData} />}{" "}
       <EntityTable data={uploads} columns={columns} />
       <AddUploadModal
         visible={isAddModalVisible}
